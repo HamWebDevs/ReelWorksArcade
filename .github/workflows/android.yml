@@ -1,4 +1,4 @@
-name: Private Android debug build
+name: Android debug build
 
 on:
   workflow_dispatch:
@@ -15,8 +15,6 @@ concurrency:
 
 jobs:
   validate-and-build:
-    # Artifacts inherit repository access. Never build/upload in a public repository.
-    if: github.event.repository.private == true
     runs-on: ubuntu-24.04
     timeout-minutes: 35
     env:
@@ -60,14 +58,29 @@ jobs:
           python3 tools/check_godot_log.py "$RUNNER_TEMP/simulation.log"
       - name: Export and verify temporary-signed debug APK
         run: bash tools/export_android.sh
-      - name: Upload private debug artifact
+      - name: Prepare downloadable APK bundle
+        run: |
+          mkdir -p builds/artifact
+          cp builds/ReelworksArcade-debug.apk builds/ReelworksArcade-debug.apk.sha256 builds/artifact/
+          cp builds/test-results.json builds/simulation-results.json builds/artifact/
+          cp "$RUNNER_TEMP/tests.log" "$RUNNER_TEMP/ui.log" "$RUNNER_TEMP/simulation.log" builds/artifact/
+      - name: Upload debug APK artifact
+        id: apk
         uses: actions/upload-artifact@v4
         with:
           name: ReelworksArcade-debug
-          path: |
-            builds/ReelworksArcade-debug.apk
-            builds/ReelworksArcade-debug.apk.sha256
-            ${{ runner.temp }}/tests.log
-            ${{ runner.temp }}/simulation.log
+          path: builds/artifact/
           if-no-files-found: error
           retention-days: 7
+      - name: Add download instructions
+        env:
+          APK_ARTIFACT_URL: ${{ steps.apk.outputs.artifact-url }}
+        run: |
+          python3 - <<'PY_SUMMARY'
+          import os
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as report:
+              report.write('## APK ready\n\n')
+              report.write('[Download ReelworksArcade-debug](' + os.environ['APK_ARTIFACT_URL'] + ')\n\n')
+              report.write('Sign in to GitHub, download and extract the ZIP, then open `ReelworksArcade-debug.apk` on your Android phone.\n\n')
+              report.write('ARM64 development build. Fictional credits only. No store publication.\n')
+          PY_SUMMARY

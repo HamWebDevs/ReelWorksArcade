@@ -1,15 +1,15 @@
 # Android builds and Samsung Galaxy S20+ installation
 
-Reelworks Arcade uses **Godot 4.7.2 stable** and the matching **4.7.2.stable export templates**. It runs offline with OpenGL compatibility rendering, portrait orientation and ARM64 code. The Galaxy S20+ running Android 13 is an intended target; device performance and lifecycle testing must still be performed on a physical handset. The debug APK is a private testing build, not a store release.
+Reelworks Arcade uses **Godot 4.7.2 stable** and the matching **4.7.2.stable export templates**. It runs offline with OpenGL compatibility rendering, portrait orientation and ARM64 code. The Galaxy S20+ running Android 13 is an intended target; device performance and lifecycle testing must still be performed on a physical handset. The debug APK is a development testing build, not a store release.
 
-## Automated private build
+## Automated GitHub build
 
-1. Put this repository in a **private GitHub repository**. No remote repository is created by the build scripts.
-2. Open **Actions → Private Android debug build → Run workflow**. It also runs for main/master pushes and pull requests.
+1. Open [HamWebDevs/ReelWorksArcade](https://github.com/HamWebDevs/ReelWorksArcade). The owner has authorized public repository hosting.
+2. Open **Actions → Android debug build → Run workflow**. It also runs for main/master pushes and pull requests.
 3. The workflow installs the exact editor and templates, Java 17 and Android SDK tools, imports resources, rejects script errors, runs gameplay tests and the deterministic simulation, then exports a signed debug APK.
-4. Download the **ReelworksArcade-debug** workflow artifact. It contains `ReelworksArcade-debug.apk`, its SHA-256 checksum and test/simulation logs. Artifacts expire after seven days and require repository access.
+4. Sign in to GitHub, open a successful run and download the **ReelworksArcade-debug** artifact. Extract the ZIP; `ReelworksArcade-debug.apk` is at its top level alongside its SHA-256 checksum and test reports. Artifacts expire after seven days; run the workflow again when needed.
 
-The job explicitly refuses to run in a public repository. It does not publish releases, deploy to a store, or require signing secrets. Every build generates a temporary development key outside the repository and deletes it after export. **A different build has a different signing identity**, so Android may require uninstalling the previous build first; uninstalling removes local saved progress. A stable private development keystore can be used manually in the Godot editor if preserving installs across builds is desired. Never commit it.
+The workflow runs in the owner-authorized public repository and can also run in a private repository. It does not create GitHub releases, deploy to a store, or require signing secrets. Every build generates a temporary development key outside the repository and deletes it after export. **A different build has a different signing identity**, so Android may require uninstalling the previous build first; uninstalling removes local saved progress. A stable private development keystore can be used manually in the Godot editor if preserving installs across builds is desired. Never commit it.
 
 ## Local Linux build
 

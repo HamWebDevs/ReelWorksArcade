@@ -4,6 +4,10 @@ An original, playable, offline Godot collection inspired by the hardware and pla
 
 This repository contains three working cabinets: **Last Orders**, **Empire Estates** and **Time Shift**. It is a substantial playable development build, version 0.1.0, with original vector glass, mechanical reel animation, native touch controls and synthesized audio. It is not a finished commercial release. Read [the development report](docs/DEVELOPMENT_REPORT.md) for verified results and remaining polish/balancing work.
 
+## Download the Android APK
+
+Open [Android debug build in GitHub Actions](https://github.com/HamWebDevs/ReelWorksArcade/actions/workflows/android.yml), select a successful run, and download **ReelworksArcade-debug** under **Artifacts**. Sign in to GitHub first. Extract the ZIP and open `ReelworksArcade-debug.apk` on your phone. The APK is at the top level of the ZIP.
+
 ## Play and install
 
 Open `project.godot` in **Godot 4.7.2 stable** and press F6/F5, or run:
@@ -58,7 +62,7 @@ assets/               Original SVG/WAV media and licensed DejaVu fonts
 tests/                Headless engine/UI tests, simulation, visual capture
 tools/                Reproducible assets/data and exact Android build tools
 docs/                 Rules, mathematics, provenance, build and release notes
-.github/workflows/    Private-only Android artifact pipeline
+.github/workflows/    Android APK artifact pipeline
 builds/               Ignored local APK, test reports and screenshots
 ```
 
@@ -86,10 +90,10 @@ XDG_DATA_HOME=/tmp/reelworks-visuals godot --path . --audio-driver Dummy \
 
 Outputs go to `builds/screenshots/`. Inspect them at phone size as well as full size. Automated logic tests do not establish phone performance, physical touch comfort or Android lifecycle behavior on a device.
 
-## Build privately
+## GitHub APK builds
 
-The [GitHub Actions workflow](.github/workflows/android.yml) installs exact Godot 4.7.2/templates, Java 17 and Android SDK 36, imports/validates, runs engine/UI tests and 300,000-spin simulation, generates a temporary debug key, exports and verifies the APK, and uploads a 7-day artifact. Its repository-private guard prevents running in a public repository. It never creates a release or publishes to a store. No release credentials are committed.
+The [GitHub Actions workflow](.github/workflows/android.yml) installs exact Godot 4.7.2/templates, Java 17 and Android SDK 36, imports/validates, runs engine/UI tests and 300,000-spin simulation, generates a temporary debug key, exports and verifies the APK, and uploads a 7-day artifact. The owner has authorized hosting this project in a public repository. It never creates a release or publishes to a store. No release credentials are committed.
 
-The project currently lives in a local Git repository; no remote was created or pushed. Create/select a **private** repository before pushing if you want hosted Actions. The local build executes the same export script; the hosted workflow itself has not been run in this session.
+The source destination is [HamWebDevs/ReelWorksArcade](https://github.com/HamWebDevs/ReelWorksArcade). See [Actions](https://github.com/HamWebDevs/ReelWorksArcade/actions/workflows/android.yml) for current hosted build results. Local and hosted builds use the same export script.
 
 Read [asset provenance](docs/ASSETS.md), [Android/AAB steps](docs/ANDROID.md) and [the future publication checklist](docs/PUBLICATION_CHECKLIST.md). The project's original source/media are available to the project owner for further development; no public source licence is selected. Preserve the bundled font notices and Godot engine attribution when distributing.

@@ -1,6 +1,6 @@
 # Future publication checklist
 
-This is a private development build. No store submission, public repository or public release has been created.
+This is a development build. The owner has authorized public source hosting at `HamWebDevs/ReelWorksArcade`. No store submission or GitHub release has been created.
 
 - [ ] Playtest all three machines on the Galaxy S20+ / Android 13 and at least two smaller/larger modern ARM64 phones. Check taps, legibility, audio, Back navigation, interrupted process restoration, battery, sustained frame pacing and thermal behavior.
 - [ ] Balance the generous free-play tables and persistent district/construction mechanics. Run multiple seeds and player strategies; use long-run uncertainty estimates before making any numerical return claim.
@@ -15,4 +15,4 @@ This is a private development build. No store submission, public repository or p
 - [ ] Verify current target SDK, minimum SDK, 16 KB native alignment, release signing, crash-free startup, offline behavior, installation and upgrades through an internal test track.
 - [ ] Add a player-friendly module importer only after a schema/version/asset migration design and upgrade testing. Existing JSON modules are developer installed.
 - [ ] Test save migrations and backup recovery before every update. Current schema is version 1; changes must preserve or explicitly migrate pending awards.
-- [ ] Obtain the project owner's explicit authorization for any remote publication or store submission.
+- [ ] Obtain the project owner's explicit authorization for store submission or any additional release publication.

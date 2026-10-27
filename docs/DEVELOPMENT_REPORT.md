@@ -1,6 +1,6 @@
 # Development report — 0.1.0
 
-Verified on 2026-10-27 using official **Godot 4.7.2 stable** (`ed1daf0bf`). This is a playable private development build, with real source and a signed Android debug APK; it is not represented as a publication-ready commercial game.
+Verified on 2026-10-27 using official **Godot 4.7.2 stable** (`ed1daf0bf`). This is a playable development build, with real source and a signed Android debug APK; it is not represented as a publication-ready commercial game.
 
 ## Implemented
 
@@ -13,7 +13,7 @@ Verified on 2026-10-27 using official **Godot 4.7.2 stable** (`ed1daf0bf`). This
 | Reusable bonuses | All 16 requested rule families; 33 named common/themed feature IDs tested to completion. Shared families are deliberately reused, not separate proprietary machine emulations. |
 | Presentation | Illustrated original SVG glass and symbols, native cabinet components, seven-segment displays, staggered mechanical reels, lit controls and lamp chase, dart/clock/pick props, original synthesized effects/ambience, cabinet browsing, rules/stats, board/reel inspection. |
 | Mobile and persistence | Portrait scalable canvas, touch controls, Android Back/pause save hooks, sound/music/mute/vibration, motion/flashing/contrast settings, optional 20-minute reminder, atomic save/backup with pending spin/bonus state. |
-| Delivery | Exact-version tool installer, temporary signing script, private-only GitHub Actions pipeline, SDK 36 ARM64 export, source and asset provenance, installation/AAB instructions. |
+| Delivery | Exact-version tool installer, temporary signing script, GitHub Actions artifact pipeline, SDK 36 ARM64 export, source and asset provenance, installation/AAB instructions. |
 
 ## Validation performed
 
@@ -24,7 +24,7 @@ Verified on 2026-10-27 using official **Godot 4.7.2 stable** (`ed1daf0bf`). This
 - Rendered inspection: arcade, all three cabinets, board decisions, Darts Dash and Temporal Hi-Lo at 720×1440 under Xvfb/Mesa OpenGL. The virtual display cannot provide a meaningful handset FPS measurement; it emits a V-Sync capability warning.
 - Android export: actual signed debug APK; APK v2/v3 signatures and 16 KB ZIP alignment verified. Manifest: `org.reelworks.arcade`, version 0.1.0/code 1, minimum SDK 24, target SDK 36, ARM64 only. Sole requested permission: VIBRATE. No INTERNET permission.
 - Physical Android install, touch feel, device FPS, battery and actual OS lifecycle tests: **not performed** (no handset/emulator attached).
-- Hosted GitHub Actions run: **not performed** (no remote repository created or pushed). Its exact export script was run locally.
+- Hosted GitHub Actions: the initial validation below was local. The owner subsequently authorized public hosting at `HamWebDevs/ReelWorksArcade`; consult its [Actions runs](https://github.com/HamWebDevs/ReelWorksArcade/actions/workflows/android.yml) for hosted results. The same export script is used.
 
 ## Measured design mathematics
 
@@ -48,7 +48,7 @@ Full machine-readable evidence: [gameplay tests](results/gameplay-tests.json), [
 4. **Module installation:** extra validated JSON definitions load without changing the engine, but require placement in private app data. There is no player-facing importer or custom external-art loader. New rule families still require code.
 5. **Release hardening:** debug keys are ephemeral, so installing a later independently signed build may require uninstalling and losing local saves. Implement stable private development signing and tested save migrations before distributing updates. Release AAB/signing/store submission are documented future steps.
 
-All requested gameplay systems have working implementations in this build. Remaining work is primarily balance, device verification, accessibility refinement and the depth of bespoke presentation needed for commercial quality. No payments, advertisements, analytics, accounts, server infrastructure, copied ROMs or copyrighted machine media are included. Nothing was published.
+All requested gameplay systems have working implementations in this build. Remaining work is primarily balance, device verification, accessibility refinement and the depth of bespoke presentation needed for commercial quality. No payments, advertisements, analytics, accounts, server infrastructure, copied ROMs or copyrighted machine media are included. No store submission or GitHub release was created. Public source hosting was subsequently authorized by the owner.
 
 ## Screenshots
 

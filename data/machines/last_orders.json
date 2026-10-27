@@ -1,0 +1,342 @@
+{
+  "id": "last_orders",
+  "name": "LAST ORDERS",
+  "subtitle": "One more for the road? Make it fictional.",
+  "description": "Brass bells, cheeky barrels and a winding crawl through the cosiest pub in the arcade.",
+  "jackpot": 500,
+  "stake": 10,
+  "colors": {
+    "bg": "112c24",
+    "primary": "d58027",
+    "secondary": "234d36",
+    "accent": "ffdc79"
+  },
+  "trail_name": "PUB CRAWL",
+  "trail_length": 24,
+  "board_layout": "winding",
+  "feature_title": "PUB CRAWL TRAIL",
+  "special_feature": "lucky_bells",
+  "features": [
+    "darts_dash",
+    "mystery_barrel",
+    "super_hold",
+    "cash_climb",
+    "last_call_streak",
+    "lucky_bells",
+    "cash_repeater",
+    "win_spin",
+    "extra_life",
+    "no_lose",
+    "add_again",
+    "cash_pot",
+    "feature_shot",
+    "feature_upgrade",
+    "reel_skill",
+    "super_nudges",
+    "lucky_seven",
+    "bonus_selector",
+    "mystery_bonus",
+    "streak_feature"
+  ],
+  "trail": [
+    {
+      "label": "OPEN",
+      "kind": "cash",
+      "value": 10
+    },
+    {
+      "label": "20",
+      "kind": "cash",
+      "value": 20
+    },
+    {
+      "label": "NUDGE",
+      "kind": "nudges",
+      "value": 2
+    },
+    {
+      "label": "DARTS",
+      "kind": "feature",
+      "value": "darts_dash"
+    },
+    {
+      "label": "?",
+      "kind": "mystery",
+      "value": 0
+    },
+    {
+      "label": "40",
+      "kind": "cash",
+      "value": 40
+    },
+    {
+      "label": "LIFE",
+      "kind": "life",
+      "value": 1
+    },
+    {
+      "label": "BARREL",
+      "kind": "feature",
+      "value": "mystery_barrel"
+    },
+    {
+      "label": "60",
+      "kind": "cash",
+      "value": 60
+    },
+    {
+      "label": "HOLD",
+      "kind": "feature",
+      "value": "super_hold"
+    },
+    {
+      "label": "UPGRADE",
+      "kind": "upgrade",
+      "value": 1
+    },
+    {
+      "label": "LADDER",
+      "kind": "feature",
+      "value": "cash_climb"
+    },
+    {
+      "label": "80",
+      "kind": "cash",
+      "value": 80
+    },
+    {
+      "label": "REPEAT",
+      "kind": "feature",
+      "value": "cash_repeater"
+    },
+    {
+      "label": "NUDGE",
+      "kind": "nudges",
+      "value": 3
+    },
+    {
+      "label": "SHOT",
+      "kind": "feature",
+      "value": "feature_shot"
+    },
+    {
+      "label": "?",
+      "kind": "mystery",
+      "value": 0
+    },
+    {
+      "label": "100",
+      "kind": "cash",
+      "value": 100
+    },
+    {
+      "label": "BELLS",
+      "kind": "feature",
+      "value": "lucky_bells"
+    },
+    {
+      "label": "AGAIN",
+      "kind": "repeat",
+      "value": 1
+    },
+    {
+      "label": "NO LOSE",
+      "kind": "feature",
+      "value": "no_lose"
+    },
+    {
+      "label": "150",
+      "kind": "cash",
+      "value": 150
+    },
+    {
+      "label": "POT",
+      "kind": "feature",
+      "value": "cash_pot"
+    },
+    {
+      "label": "LAST CALL",
+      "kind": "feature",
+      "value": "last_call_streak"
+    }
+  ],
+  "rules": [
+    "18+ free-play simulation. All amounts are fictional credits with no monetary or transferable value. Each START costs 10 credits; refill is always free.",
+    "Only three matching symbols on the centre winline pay the printed triple prize. Each unheld reel independently selects one of its 30 physical stops with equal probability.",
+    "Centre-symbol number overlays add to the Pub Crawl meter. Every complete 24 steps opens a six-turn Pub Crawl feature. A triple Lucky Bell also opens its bonus selector.",
+    "Offered HOLD buttons keep their exact reel stops for the next paid spin. NUDGE UP and DOWN move one real strip stop and consume one nudge.",
+    "Darts Dash: 12 visible lamp positions advance every 100 ms. STOP locks the displayed position: lamps 6 or 7 pay 120; lamps 5 or 8 pay 60; the other lamps pay 20. Reduced motion freezes the indicator and uses the same award table.",
+    "Mystery Barrel: choose one of three covered barrels; the chosen award is drawn uniformly when selected and saved immediately. Each barrel has the same published distribution.",
+    "Cash Ladder uses uniform independent numbers 1 to 12. HI or LO wins only on a strict higher or lower result; equal numbers lose unless protected. COLLECT banks the current pot; EXCHANGE uses the displayed fixed alternative.",
+    "Last Call Streak contains three to six independent prize reveals. Press CONTINUE to reveal each prize and then COLLECT. No time pressure applies.",
+    "The board uses original, independent random events. There is no compensated payout, near-miss manipulation, advertised RTP, purchase, withdrawal or online connection.",
+    "TRIPLE PAYTABLE: Cherries 20; Lemon 30; Brass Bell 60; BAR 100; Red Seven 200; Lucky Bell 500 fictional credits. All other centre combinations pay zero. Row above and row below are preview stops, not additional paylines.",
+    "OVERPRINTS: Lemon 1; Brass Bell 2; Red Seven 3; Cherries, BAR and themed symbol 0. Sum the three centre numbers after a paid spin. Nudge movement does not add more trail numbers.",
+    "On a non-winning spin without a feature entry, HOLD is offered with probability 1/4. If no HOLD is offered, NUDGE is offered with probability 1/5 (3/20 overall), with 1, 2 or 3 nudges equally likely.",
+    "Board movement rolls 1 to 6 uniformly. Cash squares add their printed value to the pot; LIFE grants one hi-lo protection; UPGRADE raises the board multiplier by one up to x4; AGAIN adds one board turn, capped at 12. Bonuses return their awards to the board pot.",
+    "Mystery squares select uniformly from this cabinet\u2019s feature list. Each random draw is independent. The currently lit square and prompt describe the resulting playable feature.",
+    "Cash Ladder begins at at least 20. A successful strict HI/LO prediction doubles the pot up to the decorative jackpot; six successes also finish the ladder. Equal numbers lose. An earned No Lose or Extra Life absorbs one losing result. COLLECT keeps all; EXCHANGE keeps half, rounded down.",
+    "Reel Skill stops reel 3 at the displayed lamp index and pays its skill award plus any centre-line triple. Feature Shot lamps 6/7 open a streak, 5/8 pay 40, others 10. No paid-spin outcome is altered by these bonus rules.",
+    "Win Spin selects uniformly among the six payable symbols and sets an explicit winning triple. Super Hold offers three free spins preserving selected reels, ends on the first match, then grants two further HOLD offers. Super Nudges gives six real strip steps; the first match ends the bonus.",
+    "Cash Pot chooses one of 20,30,40,50,60,70,80,90,100 uniformly. Lucky Seven draws 1 to 12 uniformly: 7 pays 200, all others 20. Mystery Barrel and Mystery Bonus choose 20,40,80,120 with equal probability for every cover.",
+    "Cash Repeater starts at 40. CONTINUE has a 1/2 chance to add 40; failure ends the bonus and keeps the pot. At most five successful repeats. Add Again adds the current board pot once (minimum 20). Extra Life and No Lose also add 20.",
+    "Streaks choose 3, 4, 5 or 6 reveals uniformly. Reveal n pays n times one of 10, 20, 30, drawn uniformly. Feature Upgrade raises the board multiplier by one to a maximum x4. Board cash and returned bonus awards use the current multiplier.",
+    "Lucky Bells and Bonus Selector explicitly offer Reel Skill, Cash Climb or Cash Pot. They are player choices, not secretly weighted random results."
+  ],
+  "schema_version": 1,
+  "board_turns": 6,
+  "hold_chance": [
+    1,
+    4
+  ],
+  "nudge_chance": [
+    1,
+    5
+  ],
+  "special_symbol": "special",
+  "artwork": "res://assets/cabinets/last_orders.svg",
+  "symbols": {
+    "cherry": {
+      "label": "Cherries",
+      "prize": 20,
+      "number": 0,
+      "icon": "res://assets/symbols/cherry.svg"
+    },
+    "lemon": {
+      "label": "Lemon",
+      "prize": 30,
+      "number": 1,
+      "icon": "res://assets/symbols/lemon.svg"
+    },
+    "bell": {
+      "label": "Brass Bell",
+      "prize": 60,
+      "number": 2,
+      "icon": "res://assets/symbols/bell.svg"
+    },
+    "bar": {
+      "label": "BAR",
+      "prize": 100,
+      "number": 0,
+      "icon": "res://assets/symbols/bar.svg"
+    },
+    "seven": {
+      "label": "Red Seven",
+      "prize": 200,
+      "number": 3,
+      "icon": "res://assets/symbols/seven.svg"
+    },
+    "special": {
+      "label": "Lucky Bell",
+      "prize": 500,
+      "number": 0,
+      "icon": "res://assets/symbols/last_orders_special.svg"
+    }
+  },
+  "paytable": {
+    "cherry": 20,
+    "lemon": 30,
+    "bell": 60,
+    "bar": 100,
+    "seven": 200,
+    "special": 500
+  },
+  "strips": [
+    [
+      "cherry",
+      "lemon",
+      "bell",
+      "cherry",
+      "bar",
+      "lemon",
+      "seven",
+      "cherry",
+      "lemon",
+      "special",
+      "bell",
+      "bar",
+      "cherry",
+      "lemon",
+      "bell",
+      "seven",
+      "cherry",
+      "bar",
+      "lemon",
+      "cherry",
+      "bell",
+      "special",
+      "lemon",
+      "bar",
+      "cherry",
+      "seven",
+      "lemon",
+      "bell",
+      "bar",
+      "cherry"
+    ],
+    [
+      "cherry",
+      "bar",
+      "bell",
+      "cherry",
+      "seven",
+      "lemon",
+      "bar",
+      "cherry",
+      "bell",
+      "lemon",
+      "special",
+      "cherry",
+      "bar",
+      "lemon",
+      "seven",
+      "bell",
+      "cherry",
+      "lemon",
+      "bar",
+      "cherry",
+      "bell",
+      "special",
+      "lemon",
+      "seven",
+      "cherry",
+      "bar",
+      "bell",
+      "cherry",
+      "lemon",
+      "lemon"
+    ],
+    [
+      "lemon",
+      "bar",
+      "seven",
+      "cherry",
+      "lemon",
+      "bell",
+      "cherry",
+      "bar",
+      "special",
+      "lemon",
+      "cherry",
+      "seven",
+      "bar",
+      "lemon",
+      "bell",
+      "cherry",
+      "lemon",
+      "bar",
+      "bell",
+      "cherry",
+      "seven",
+      "lemon",
+      "special",
+      "bar",
+      "cherry",
+      "bell",
+      "lemon",
+      "cherry",
+      "bell",
+      "cherry"
+    ]
+  ]
+}

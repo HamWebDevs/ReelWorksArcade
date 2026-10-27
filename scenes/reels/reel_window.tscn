@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/ui/reel_view.gd" id="1"]
+[node name="MechanicalReels" type="Control"]
+custom_minimum_size = Vector2(300, 180)
+clip_contents = true
+script = ExtResource("1")

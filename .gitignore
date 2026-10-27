@@ -1,0 +1,12 @@
+.godot/
+android/
+*.keystore
+*.jks
+builds/*
+!builds/.gitkeep
+*.tmp
+*.log
+.DS_Store
+
+__pycache__/
+*.pyc

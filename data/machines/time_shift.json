@@ -1,0 +1,344 @@
+{
+  "id": "time_shift",
+  "name": "TIME SHIFT",
+  "subtitle": "The future is only one stop away.",
+  "description": "Charge the coils, rewind the reels and jump between three eras on a looping time circuit.",
+  "jackpot": 1000,
+  "stake": 10,
+  "colors": {
+    "bg": "171a38",
+    "primary": "8545b7",
+    "secondary": "1c3d65",
+    "accent": "64e7ec"
+  },
+  "trail_name": "TIME CIRCUIT",
+  "trail_length": 24,
+  "board_layout": "orbit",
+  "feature_title": "TIME CIRCUIT",
+  "special_feature": "time_jump",
+  "zones": [
+    "Past",
+    "Present",
+    "Future"
+  ],
+  "features": [
+    "temporal_hi_lo",
+    "rewind",
+    "time_jump",
+    "temporal_surge",
+    "super_shift",
+    "paradox_mystery",
+    "cash_climb",
+    "super_nudges",
+    "feature_upgrade",
+    "no_lose",
+    "extra_life",
+    "lucky_seven",
+    "reel_skill",
+    "feature_shot",
+    "bonus_selector",
+    "cash_repeater"
+  ],
+  "trail": [
+    {
+      "label": "PAST",
+      "kind": "cash",
+      "value": 15
+    },
+    {
+      "label": "REWIND",
+      "kind": "feature",
+      "value": "rewind"
+    },
+    {
+      "label": "30",
+      "kind": "cash",
+      "value": 30
+    },
+    {
+      "label": "LIFE",
+      "kind": "life",
+      "value": 1
+    },
+    {
+      "label": "CLOCK",
+      "kind": "feature",
+      "value": "temporal_hi_lo"
+    },
+    {
+      "label": "NUDGE",
+      "kind": "nudges",
+      "value": 2
+    },
+    {
+      "label": "PARADOX",
+      "kind": "feature",
+      "value": "paradox_mystery"
+    },
+    {
+      "label": "JUMP",
+      "kind": "feature",
+      "value": "time_jump"
+    },
+    {
+      "label": "NOW",
+      "kind": "cash",
+      "value": 50
+    },
+    {
+      "label": "SHIFT",
+      "kind": "feature",
+      "value": "super_shift"
+    },
+    {
+      "label": "75",
+      "kind": "cash",
+      "value": 75
+    },
+    {
+      "label": "UPGRADE",
+      "kind": "upgrade",
+      "value": 1
+    },
+    {
+      "label": "CLOCK",
+      "kind": "feature",
+      "value": "temporal_hi_lo"
+    },
+    {
+      "label": "SKILL",
+      "kind": "feature",
+      "value": "reel_skill"
+    },
+    {
+      "label": "?",
+      "kind": "mystery",
+      "value": 0
+    },
+    {
+      "label": "JUMP",
+      "kind": "feature",
+      "value": "time_jump"
+    },
+    {
+      "label": "FUTURE",
+      "kind": "cash",
+      "value": 100
+    },
+    {
+      "label": "SURGE",
+      "kind": "feature",
+      "value": "temporal_surge"
+    },
+    {
+      "label": "NUDGE",
+      "kind": "nudges",
+      "value": 4
+    },
+    {
+      "label": "NO LOSE",
+      "kind": "feature",
+      "value": "no_lose"
+    },
+    {
+      "label": "150",
+      "kind": "cash",
+      "value": 150
+    },
+    {
+      "label": "PARADOX",
+      "kind": "feature",
+      "value": "paradox_mystery"
+    },
+    {
+      "label": "AGAIN",
+      "kind": "repeat",
+      "value": 1
+    },
+    {
+      "label": "SURGE",
+      "kind": "feature",
+      "value": "temporal_surge"
+    }
+  ],
+  "rules": [
+    "18+ free-play simulation. All amounts are fictional credits with no monetary or transferable value. Each START costs 10 credits; refill is always free.",
+    "Only three matching symbols on the centre winline pay the printed triple prize. Each unheld reel independently selects one of its 30 stops with equal probability.",
+    "Centre-symbol number overlays charge a 24-step looping Time Circuit. Completing the meter opens six board turns. Three Clock symbols activate the Time Jump feature.",
+    "Positions 1\u20138 are Past, 9\u201316 Present, and 17\u201324 Future. Time Jump offers an explicit era choice and moves to the chosen zone. Each era contains its own printed feature positions.",
+    "Temporal Hi-Lo draws independent uniform numbers 1 to 12. HI and LO must be strictly correct; equality loses unless protected. COLLECT banks the current fictional award.",
+    "An earned Rewind restores defined previous reel positions. It is limited to the earned charge and may not repeatedly evaluate the same award. Super Shift grants enhanced nudges and a feature upgrade.",
+    "Temporal Surge reveals an escalating sequence of independently chosen awards. CONTINUE reveals the next award; COLLECT is offered on completion.",
+    "Paradox Mystery draws uniformly from four outcomes: Rewind plus 20, Time Jump, Super Shift, or 160 credits. No clock time or animation changes a random award.",
+    "HOLD preserves exact stops when offered; NUDGE moves one stop. STOP features use the visible 12-position indicator, not hidden random timing.",
+    "The board uses original, independent random events. There is no compensated payout, near-miss manipulation, advertised RTP, purchase, withdrawal or online connection.",
+    "TRIPLE PAYTABLE: Cherries 15; Lemon 35; Brass Bell 80; BAR 120; Red Seven 300; Clock 1000 fictional credits. All other centre combinations pay zero. Row above and row below are preview stops, not additional paylines.",
+    "OVERPRINTS: Lemon 1; Brass Bell 2; Red Seven 3; Cherries, BAR and themed symbol 0. Sum the three centre numbers after a paid spin. Nudge movement does not add more trail numbers.",
+    "On a non-winning spin without a feature entry, HOLD is offered with probability 1/4. If no HOLD is offered, NUDGE is offered with probability 1/5 (3/20 overall), with 1, 2 or 3 nudges equally likely.",
+    "Board movement rolls 1 to 6 uniformly. Cash squares add their printed value to the pot; LIFE grants one hi-lo protection; UPGRADE raises the board multiplier by one up to x4; AGAIN adds one board turn, capped at 12. Bonuses return their awards to the board pot.",
+    "Mystery squares select uniformly from this cabinet\u2019s feature list. Each random draw is independent. The currently lit square and prompt describe the resulting playable feature.",
+    "Cash Ladder begins at at least 20. A successful strict HI/LO prediction doubles the pot up to the decorative jackpot; six successes also finish the ladder. Equal numbers lose. An earned No Lose or Extra Life absorbs one losing result. COLLECT keeps all; EXCHANGE keeps half, rounded down.",
+    "Reel Skill stops reel 3 at the displayed lamp index and pays its skill award plus any centre-line triple. Feature Shot lamps 6/7 open a streak, 5/8 pay 40, others 10. No paid-spin outcome is altered by these bonus rules.",
+    "Win Spin selects uniformly among the six payable symbols and sets an explicit winning triple. Super Hold offers three free spins preserving selected reels, ends on the first match, then grants two further HOLD offers. Super Nudges gives six real strip steps; the first match ends the bonus.",
+    "Cash Pot chooses one of 20,30,40,50,60,70,80,90,100 uniformly. Lucky Seven draws 1 to 12 uniformly: 7 pays 200, all others 20. Mystery Barrel and Mystery Bonus choose 20,40,80,120 with equal probability for every cover.",
+    "Cash Repeater starts at 40. CONTINUE has a 1/2 chance to add 40; failure ends the bonus and keeps the pot. At most five successful repeats. Add Again adds the current board pot once (minimum 20). Extra Life and No Lose also add 20.",
+    "Streaks choose 3, 4, 5 or 6 reveals uniformly. Reveal n pays n times one of 10, 20, 30, drawn uniformly. Feature Upgrade raises the board multiplier by one to a maximum x4. Board cash and returned bonus awards use the current multiplier.",
+    "Lucky Bells and Bonus Selector explicitly offer Reel Skill, Cash Climb or Cash Pot. They are player choices, not secretly weighted random results."
+  ],
+  "schema_version": 1,
+  "board_turns": 6,
+  "hold_chance": [
+    1,
+    4
+  ],
+  "nudge_chance": [
+    1,
+    5
+  ],
+  "special_symbol": "special",
+  "artwork": "res://assets/cabinets/time_shift.svg",
+  "symbols": {
+    "cherry": {
+      "label": "Cherries",
+      "prize": 15,
+      "number": 0,
+      "icon": "res://assets/symbols/cherry.svg"
+    },
+    "lemon": {
+      "label": "Lemon",
+      "prize": 35,
+      "number": 1,
+      "icon": "res://assets/symbols/lemon.svg"
+    },
+    "bell": {
+      "label": "Brass Bell",
+      "prize": 80,
+      "number": 2,
+      "icon": "res://assets/symbols/bell.svg"
+    },
+    "bar": {
+      "label": "BAR",
+      "prize": 120,
+      "number": 0,
+      "icon": "res://assets/symbols/bar.svg"
+    },
+    "seven": {
+      "label": "Red Seven",
+      "prize": 300,
+      "number": 3,
+      "icon": "res://assets/symbols/seven.svg"
+    },
+    "special": {
+      "label": "Clock",
+      "prize": 1000,
+      "number": 0,
+      "icon": "res://assets/symbols/time_shift_special.svg"
+    }
+  },
+  "paytable": {
+    "cherry": 15,
+    "lemon": 35,
+    "bell": 80,
+    "bar": 120,
+    "seven": 300,
+    "special": 1000
+  },
+  "strips": [
+    [
+      "seven",
+      "cherry",
+      "lemon",
+      "special",
+      "bell",
+      "bar",
+      "cherry",
+      "lemon",
+      "bell",
+      "seven",
+      "cherry",
+      "bar",
+      "lemon",
+      "cherry",
+      "bell",
+      "special",
+      "lemon",
+      "bar",
+      "cherry",
+      "seven",
+      "lemon",
+      "bell",
+      "bar",
+      "cherry",
+      "cherry",
+      "lemon",
+      "bell",
+      "cherry",
+      "bar",
+      "lemon"
+    ],
+    [
+      "bar",
+      "cherry",
+      "bell",
+      "lemon",
+      "special",
+      "cherry",
+      "bar",
+      "lemon",
+      "seven",
+      "bell",
+      "cherry",
+      "lemon",
+      "bar",
+      "cherry",
+      "bell",
+      "special",
+      "lemon",
+      "seven",
+      "cherry",
+      "bar",
+      "special",
+      "cherry",
+      "lemon",
+      "lemon",
+      "cherry",
+      "bar",
+      "bell",
+      "cherry",
+      "seven",
+      "lemon"
+    ],
+    [
+      "cherry",
+      "bar",
+      "bell",
+      "lemon",
+      "cherry",
+      "seven",
+      "bar",
+      "lemon",
+      "bell",
+      "cherry",
+      "lemon",
+      "bar",
+      "bell",
+      "cherry",
+      "seven",
+      "lemon",
+      "special",
+      "bar",
+      "cherry",
+      "bell",
+      "lemon",
+      "cherry",
+      "bell",
+      "cherry",
+      "lemon",
+      "bar",
+      "seven",
+      "cherry",
+      "lemon",
+      "bell"
+    ]
+  ]
+}

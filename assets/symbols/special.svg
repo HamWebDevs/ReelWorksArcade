@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><defs>
+ <linearGradient id="gold" x2="0.2" y2="1"><stop stop-color="#fff5be"/><stop offset=".3" stop-color="#e8bc59"/><stop offset=".55" stop-color="#987039"/><stop offset=".78" stop-color="#eac774"/><stop offset="1" stop-color="#71512a"/></linearGradient>
+ <linearGradient id="cream" x2=".1" y2="1"><stop stop-color="#fff7d9"/><stop offset="1" stop-color="#bba77b"/></linearGradient>
+ <linearGradient id="metal" x2=".3" y2="1"><stop stop-color="#98b5c9"/><stop offset=".3" stop-color="#253650"/><stop offset=".6" stop-color="#8aacc3"/><stop offset="1" stop-color="#17243a"/></linearGradient>
+ <linearGradient id="red" x2=".2" y2="1"><stop stop-color="#ff7360"/><stop offset=".4" stop-color="#dd352f"/><stop offset="1" stop-color="#821a27"/></linearGradient>
+ <linearGradient id="green" x2=".4" y2="1"><stop stop-color="#519c76"/><stop offset=".5" stop-color="#216044"/><stop offset="1" stop-color="#102e2d"/></linearGradient>
+ </defs><path d="M64.0 16.0 L75.8 47.7 L109.7 49.2 L83.2 70.2 L92.2 102.8 L64.0 84.2 L35.8 102.8 L44.8 70.2 L18.3 49.2 L52.2 47.7Z" fill="#e5b653" /><path d="M64.0 35.0 L71.2 54.1 L91.6 55.0 L75.6 67.8 L81.0 87.5 L64.0 76.2 L47.0 87.5 L52.4 67.8 L36.4 55.0 L56.8 54.1Z" fill="#fff0c1" /></svg>

@@ -1,0 +1,73 @@
+name: Private Android debug build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: android-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-and-build:
+    # Artifacts inherit repository access. Never build/upload in a public repository.
+    if: github.event.repository.private == true
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      GODOT_BIN: /home/runner/.local/bin/godot
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Install Android command-line tools
+        uses: android-actions/setup-android@v3
+      - name: Install pinned Android build tools
+        run: sdkmanager 'platform-tools' 'platforms;android-36' 'build-tools;36.0.0'
+      - name: Install Godot 4.7.2 and matching templates
+        run: python3 tools/install_godot.py --directory /home/runner/.local/bin
+      - name: Import and validate GDScript
+        shell: bash
+        run: |
+          set -o pipefail
+          "$GODOT_BIN" --headless --path . --editor --import --quit 2>&1 | tee "$RUNNER_TEMP/import.log"
+          python3 tools/check_godot_log.py "$RUNNER_TEMP/import.log"
+      - name: Run gameplay and persistence tests
+        shell: bash
+        run: |
+          set -o pipefail
+          "$GODOT_BIN" --headless --path . --script res://tests/test_runner.gd 2>&1 | tee "$RUNNER_TEMP/tests.log"
+          python3 tools/check_godot_log.py "$RUNNER_TEMP/tests.log"
+      - name: Validate native UI and action reachability
+        shell: bash
+        run: |
+          set -o pipefail
+          XDG_DATA_HOME="$RUNNER_TEMP/ui-save" "$GODOT_BIN" --headless --path . --script res://tests/ui_smoke.gd 2>&1 | tee "$RUNNER_TEMP/ui.log"
+          python3 tools/check_godot_log.py "$RUNNER_TEMP/ui.log"
+      - name: Simulate at least 100,000 spins and feature transitions
+        shell: bash
+        run: |
+          set -o pipefail
+          "$GODOT_BIN" --headless --path . --script res://tests/simulation.gd 2>&1 | tee "$RUNNER_TEMP/simulation.log"
+          python3 tools/check_godot_log.py "$RUNNER_TEMP/simulation.log"
+      - name: Export and verify temporary-signed debug APK
+        run: bash tools/export_android.sh
+      - name: Upload private debug artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ReelworksArcade-debug
+          path: |
+            builds/ReelworksArcade-debug.apk
+            builds/ReelworksArcade-debug.apk.sha256
+            ${{ runner.temp }}/tests.log
+            ${{ runner.temp }}/simulation.log
+          if-no-files-found: error
+          retention-days: 7

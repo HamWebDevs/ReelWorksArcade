@@ -1,0 +1,28 @@
+; Reelworks Arcade — original offline free-play simulator
+config_version=5
+
+[application]
+config/name="Reelworks Arcade"
+run/main_scene="res://scenes/arcade/main.tscn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+config/description="Original pub fruit machines. 18+ • fictional credits only."
+config/icon="res://assets/icon.svg"
+
+[display]
+window/size/viewport_width=720
+window/size/viewport_height=1440
+window/size/window_width_override=450
+window/size/window_height_override=900
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/handheld/orientation=1
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=false
+textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.025, 0.035, 0.045, 1)
+
+[audio]
+driver/enable_input=false

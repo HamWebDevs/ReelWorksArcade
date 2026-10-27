@@ -1,0 +1,21 @@
+{
+	"assertions": 2338,
+	"engine_version": "4.7.2-stable (official)",
+	"failures": [],
+	"groups": [
+		"all machine configurations and validation",
+		"reel centre and wrap-around alignment",
+		"invalid inputs, rapid repeated input and credit boundaries",
+		"actual hold preservation",
+		"physical nudge direction and allowance",
+		"atomic persistence and corruption recovery",
+		"spin interruption and exactly-once restoration",
+		"deterministic random stream and snapshot continuation",
+		"complete advertised paytables",
+		"number trails and board movement",
+		"all reusable and themed bonuses complete",
+		"hi-lo strict comparison, equals and protection",
+		"collect, exchange and prize pots"
+	],
+	"passed": true
+}

@@ -28,9 +28,9 @@ COLLECT moves a finished award into the fictional bank exactly once. TRANSFER mo
 The original pub cabinet has a 24-position winding Pub Crawl and warm brass, cream, green and orange glass. Its themed reel symbol is the Lucky Bell.
 
 - Pub Crawl starts with six board moves. CONTINUE rolls 1–6 and moves that many positions around the loop. COLLECT can finish the board with its current pot.
-- Darts Dash cycles 12 numbered positions at 100 ms per position. STOP uses the displayed cursor: lamps 6/7 pay 120, 5/8 pay 60, and the other eight lamps pay 20. There is no hidden dart roll. See the application accessibility setting for its reduced-motion presentation.
+- Darts Dash now gives three separately stopped throws, accumulating all three scores. Each throw cycles 12 numbered positions at 100 ms per position. STOP uses the displayed cursor: lamps 6/7 pay 120, 5/8 pay 60, and the other eight lamps pay 20. There is no hidden dart roll. See the application accessibility setting for its reduced-motion presentation.
 - Three Lucky Bells open an explicit choice of Reel Skill, Cash Climb or Cash Pot alongside board entry.
-- Mystery Barrel presents three covers. Each has the same uniform award set, 20/40/80/120. Selection causes the draw; the result is saved immediately. The covers do not conceal preassigned differing odds.
+- Mystery Barrel starts at 20 and shuffles +40, +80 and empty between three barrels on entry. Pick up to two different barrels or collect early. Empty ends the raid keeping the pot. The hidden order and opened barrels survive interruption.
 - Last Call Streak has a uniform 3–6 reveals. Reveal number `n` pays `n × X`, with `X` drawn uniformly from 10, 20, 30. CONTINUE advances each reveal.
 - Super Hold provides three free attempts with real reel holds, ending on the first triple. It then earns two additional hold offers during base play.
 - Cash Ladder offers a collectable pot and strict HI/LO predictions described below.
@@ -41,7 +41,7 @@ The original city cabinet uses emerald, navy, cream and gold, with a 20-position
 
 - Each board turn chooses Canal Quarter, Foundry Row or Lantern Heights, indexed 0/1/2. Roll `r` uniformly from 1–6; the destination advances `r + route_index`. The selected district also receives `r` construction progress.
 - Reaching seven district progress unlocks its building, adds 20/40/60 credits for that route, and subtracts seven progress. District progress and unlocked buildings persist across features.
-- Each centre Construction symbol adds one construction icon. Property Pick also adds one icon and unlocks the selected building. Its cash award is uniform 40/80/120, regardless of the card chosen.
+- Each centre Construction symbol adds one construction icon. Property Pick also adds one icon and unlocks the selected building. Choose rent of 40/60/80 according to the card, then a separate development decision: bank rent; double it with probability 1/2 (otherwise base rent); or take half rent and two additional construction icons.
 - Building Bonus consumes construction icons and increases the board multiplier by `1 + floor(icons/3)`, capped at ×4, plus a 20-credit base award. Multiplier changes apply when returned feature awards enter the board pot.
 - Auction Offer starts at 40. COLLECT accepts the current offer. Each CONTINUE has probability 2/3 of adding 40, or 1/3 of losing that offer. Four successful raises finish the auction.
 - Rent Rush uses the streak rule, adding `10 × unlocked_building_count` to each reveal. Empire Streak instead adds `5 × construction_icons` to each reveal.
@@ -59,7 +59,7 @@ The original clock-and-coil cabinet uses violet, blue, cyan and orange. Its 24-p
 - Temporal Hi-Lo uses the same transparent 1–12 gamble model as Cash Ladder, with a clock presentation.
 - Temporal Surge uses the streak rule, adding 0/10/20 per reveal in Past/Present/Future.
 - Super Shift offers nine real nudges, ends at the first triple or COLLECT, and upgrades the board multiplier by one, capped at ×4.
-- Paradox Mystery has four equiprobable outcomes: Rewind plus 20; Time Jump; Super Shift; or 160.
+- Paradox Mystery now offers three phase-lock decisions. Stable adds 10 guaranteed; Surge adds 50 with probability 2/3; Rift adds 120 with probability 1/3. Failure ends the sequence, keeping its pot. All three successes complete it. Existing saved pre-update Paradox features retain their previous rules until completed.
 
 ## Shared feature rules
 

@@ -25,7 +25,7 @@ func _run() -> void:
 		"engine_version": Engine.get_version_info().string,
 		"seed": seed_value,
 		"spins_per_machine": spins,
-		"policy": "Use offered nudges; independently choose up to one hold before paid spins. Enter offered features. Play all board turns and free reel-control bonuses. Choose uniformly between offered choices; attempt one hi-lo per paid spin using the more likely direction then collect; play repeat and reveal features to completion. Collect completed prizes. Skill stops are uniform over 12 positions. No bank transfers.",
+		"policy": "Use offered nudges; independently choose up to one hold before paid spins. Enter offered features. Play all board turns and free reel-control bonuses. Choose uniformly between offered choices; in the barrel raid make one pick then collect with probability 1/3 or pick again; attempt one hi-lo per paid spin using the more likely direction then collect; play repeat and reveal features to completion. Collect completed prizes. Skill stops are uniform over 12 positions. No bank transfers.",
 		"note": "Observed virtual return for this explicit simulation policy, not an advertised RTP. Features and player choices affect return. Includes feature awards funded by each paid spin.",
 		"machines": []
 	}
@@ -100,6 +100,11 @@ func _simulate(machine: Dictionary, spins: int, seed_value: int) -> Dictionary:
 					action = "choice_%d" % policy_rng.randi_range(0, 2) if actions.has("choice_0") else "continue"
 				else:
 					action = "collect"
+			elif current_feature == "mystery_barrel" and game.feature.has("opened"):
+				var picks: Array = []
+				for i in 3:
+					if actions.has("choice_%d" % i): picks.append("choice_%d" % i)
+				action = "collect" if game.feature.opened.size()>0 and policy_rng.randi_range(0,2)==0 else str(picks[policy_rng.randi_range(0,picks.size()-1)])
 			elif current_feature == "super_hold":
 				action = "continue"
 			elif current_feature in ["super_nudges", "super_shift"]:

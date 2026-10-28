@@ -4,6 +4,8 @@ extends Control
 var kind := ""
 var cursor := 0
 var number := 1
+var stage := 0
+var opened: Array = []
 var font: Font = ThemeDB.fallback_font
 func _draw() -> void:
 	if kind == "darts_dash":
@@ -20,6 +22,10 @@ func _draw() -> void:
 		var target := center+Vector2.from_angle(TAU*(cursor+0.5)/12.0-PI/2)*41
 		draw_line(target+Vector2(12,-17),target,Color("efcb6b"),4,true)
 		draw_circle(target,4,Color.WHITE)
+		for i in 3:
+			var p := Vector2(210+i*118,93)
+			draw_circle(p,8,Color("ffd260") if i<stage else Color("665541"))
+			draw_string(font,p+Vector2(13,6),"DART %d" % (i+1),HORIZONTAL_ALIGNMENT_LEFT,95,15,Color("f5daa1"))
 	elif kind == "temporal_hi_lo":
 		var center := Vector2(61,58)
 		draw_circle(center,53,Color("10192b"))
@@ -30,7 +36,13 @@ func _draw() -> void:
 		var angle := TAU*number/12.0-PI/2
 		draw_line(center,center+Vector2.from_angle(angle)*36,Color("ffb067"),4,true)
 		draw_string(font,Vector2(40,67),str(number),HORIZONTAL_ALIGNMENT_CENTER,44,26,Color("d8fafa"))
-	elif kind in ["mystery_barrel","mystery_bonus","property_pick","paradox_mystery"]:
+	elif kind == "paradox_mystery":
+		for i in 3:
+			var c := Vector2(101+i*196,28)
+			draw_circle(c,26,Color("172444"))
+			draw_arc(c,27,0,TAU,36,[Color("7ef5b4"),Color("f5cb53"),Color("ed77f0")][i],3,true)
+			draw_string(font,c+Vector2(-25,7),["1/1","2/3","1/3"][i],HORIZONTAL_ALIGNMENT_CENTER,50,18,Color.WHITE)
+	elif kind in ["mystery_barrel","mystery_bonus","property_pick"]:
 		for i in 3:
 			var x := 20+i*196.0
 			var style := StyleBoxFlat.new()
@@ -42,4 +54,4 @@ func _draw() -> void:
 			if kind.begins_with("mystery"):
 				draw_line(Vector2(x+40,15),Vector2(x+122,15),Color("c2a466"),5)
 				draw_line(Vector2(x+40,47),Vector2(x+122,47),Color("c2a466"),5)
-			draw_string(font,Vector2(x+40,39),"?" if kind != "property_pick" else str(i+1),HORIZONTAL_ALIGNMENT_CENTER,82,29,Color("fff0c5"))
+			draw_string(font,Vector2(x+40,39),("OPEN" if i in opened else "?") if kind != "property_pick" else ["40","60","80"][i],HORIZONTAL_ALIGNMENT_CENTER,82,29,Color("fff0c5"))

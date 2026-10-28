@@ -165,8 +165,6 @@
     "Only three matching symbols on the centre winline pay the printed triple prize. Each unheld reel independently selects one of its 30 physical stops with equal probability.",
     "Centre-symbol number overlays add to the Pub Crawl meter. Every complete 24 steps opens a six-turn Pub Crawl feature. A triple Lucky Bell also opens its bonus selector.",
     "Offered HOLD buttons keep their exact reel stops for the next paid spin. NUDGE UP and DOWN move one real strip stop and consume one nudge.",
-    "Darts Dash: 12 visible lamp positions advance every 100 ms. STOP locks the displayed position: lamps 6 or 7 pay 120; lamps 5 or 8 pay 60; the other lamps pay 20. Reduced motion freezes the indicator and uses the same award table.",
-    "Mystery Barrel: choose one of three covered barrels; the chosen award is drawn uniformly when selected and saved immediately. Each barrel has the same published distribution.",
     "Cash Ladder uses uniform independent numbers 1 to 12. HI or LO wins only on a strict higher or lower result; equal numbers lose unless protected. COLLECT banks the current pot; EXCHANGE uses the displayed fixed alternative.",
     "Last Call Streak contains three to six independent prize reveals. Press CONTINUE to reveal each prize and then COLLECT. No time pressure applies.",
     "The board uses original, independent random events. There is no compensated payout, near-miss manipulation, advertised RTP, purchase, withdrawal or online connection.",
@@ -178,10 +176,12 @@
     "Cash Ladder begins at at least 20. A successful strict HI/LO prediction doubles the pot up to the decorative jackpot; six successes also finish the ladder. Equal numbers lose. An earned No Lose or Extra Life absorbs one losing result. COLLECT keeps all; EXCHANGE keeps half, rounded down.",
     "Reel Skill stops reel 3 at the displayed lamp index and pays its skill award plus any centre-line triple. Feature Shot lamps 6/7 open a streak, 5/8 pay 40, others 10. No paid-spin outcome is altered by these bonus rules.",
     "Win Spin selects uniformly among the six payable symbols and sets an explicit winning triple. Super Hold offers three free spins preserving selected reels, ends on the first match, then grants two further HOLD offers. Super Nudges gives six real strip steps; the first match ends the bonus.",
-    "Cash Pot chooses one of 20,30,40,50,60,70,80,90,100 uniformly. Lucky Seven draws 1 to 12 uniformly: 7 pays 200, all others 20. Mystery Barrel and Mystery Bonus choose 20,40,80,120 with equal probability for every cover.",
+    "Cash Pot chooses one of 20,30,40,50,60,70,80,90,100 uniformly. Lucky Seven draws 1 to 12 uniformly: 7 pays 200, all others 20. Mystery Bonus chooses 20,40,80,120 with equal probability for every cover.",
     "Cash Repeater starts at 40. CONTINUE has a 1/2 chance to add 40; failure ends the bonus and keeps the pot. At most five successful repeats. Add Again adds the current board pot once (minimum 20). Extra Life and No Lose also add 20.",
     "Streaks choose 3, 4, 5 or 6 reveals uniformly. Reveal n pays n times one of 10, 20, 30, drawn uniformly. Feature Upgrade raises the board multiplier by one to a maximum x4. Board cash and returned bonus awards use the current multiplier.",
-    "Lucky Bells and Bonus Selector explicitly offer Reel Skill, Cash Climb or Cash Pot. They are player choices, not secretly weighted random results."
+    "Lucky Bells and Bonus Selector explicitly offer Reel Skill, Cash Climb or Cash Pot. They are player choices, not secretly weighted random results.",
+    "Darts Dash: three separate STOP throws, each using the 12 lamps at 100ms. Lamps 6/7 pay 120, 5/8 pay 60, others 20. All three scores accumulate. Reduced motion holds lamp 1.",
+    "Mystery Barrel: start at 20. Three shuffled barrels contain +40, +80 and empty. Choose up to two distinct barrels or COLLECT early. Empty ends the raid while keeping the pot. Hidden order is saved on entry."
   ],
   "schema_version": 1,
   "board_turns": 6,

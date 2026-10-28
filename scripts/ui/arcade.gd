@@ -218,12 +218,23 @@ func _build_cabinet() -> void:
 	var accent := Color(machine.colors.accent)
 	_panel(screen,Rect2(12,12,696,1416),Color("090e10"),Color("71716a"),3,28)
 	_panel(screen,Rect2(22,22,676,1396),Color(machine.colors.bg),accent.darkened(0.4),2,22)
+	var trim := CabinetTrim.new()
+	trim.size = DESIGN
+	trim.accent = accent
+	trim.primary = Color(machine.colors.primary)
+	trim.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	screen.add_child(trim)
 	_panel(screen,Rect2(34,27,652,44),Color("101b1b"),Color("45524b"),1,12)
 	_button(screen,"‹ ARCADE",Rect2(42,28,141,43),_back,Color("233a35"))
 	_button(screen,"RULES",Rect2(482,28,91,43),_show_rules,Color("233a35"))
 	_button(screen,"⚙",Rect2(584,28,90,43),_show_settings,Color("233a35"))
 	_label(screen,"REELWORKS  /  ORIGINAL SERIES",Rect2(185,38,291,26),12,Color("c6cbbd"),true)
-	_label(screen,str(machine.name).to_upper(),Rect2(40,86,640,58),44,accent,true,true)
+	var marquee := _label(screen,str(machine.name).to_upper(),Rect2(40,86,640,58),44,Color("fff1a0"),true,true)
+	marquee.add_theme_color_override("font_shadow_color",Color("5d0f08"))
+	marquee.add_theme_constant_override("shadow_offset_x",4)
+	marquee.add_theme_constant_override("shadow_offset_y",5)
+	marquee.add_theme_color_override("font_outline_color",Color("431c16"))
+	marquee.add_theme_constant_override("outline_size",9)
 	_label(screen,str(machine.get("subtitle", "THE ORIGINAL PUB FRUIT MACHINE")).to_upper(),Rect2(42,145,636,26),14,Color("e4d6b9"),true)
 	glass = GLASS_SCENE.instantiate() as FeatureGlass
 	glass.position = Vector2(34,181)
@@ -391,6 +402,8 @@ func _sync() -> void:
 	if needs_panel:
 		bonus_face.kind = str(f.get("id",""))
 		bonus_face.number = int(f.get("number",1))
+		bonus_face.stage = int(f.get("stage",0))
+		bonus_face.opened = f.get("opened",[])
 		bonus_face.queue_redraw()
 		feature_title.text = str(f.get("title",str(f.get("id","FEATURE")).replace("_"," ").to_upper()))
 		feature_prompt.text = str(f.get("prompt",engine.message))

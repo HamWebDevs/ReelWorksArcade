@@ -26,6 +26,7 @@ func _run() -> void:
 	_test_paytable()
 	_test_feature_trails()
 	_test_features()
+	_test_retro_bonuses()
 	_test_hilo()
 	_test_collect_exchange()
 	var report := {
@@ -275,7 +276,12 @@ func _test_features() -> void:
 		var expected: int = 120 if cursor in [5, 6] else (60 if cursor in [4, 7] else 20)
 		_check(int(skill.feature.pot) == expected, "Darts lamp %d follows published table" % (cursor + 1))
 		_check(skill.rng.draws == draws, "Darts timing award uses no hidden random event")
-		_check(not skill.act("stop", cursor), "Repeated skill STOP cannot award twice")
+		_check(skill.act("stop",cursor),"Second dart accepted")
+		var resumed = _new_game()
+		_check(resumed.restore(JSON.parse_string(JSON.stringify(skill.snapshot()))),"Darts restore between throws")
+		_check(resumed.act("stop",cursor),"Third dart completes")
+		_check(int(resumed.feature.pot) == expected*3,"Three dart score accumulated exactly")
+		_check(not resumed.act("stop",cursor),"Fourth dart rejected")
 	# A WIN SPIN must produce an actual configured centre-line triple.
 	var winning = _new_game()
 	winning._launch_bonus("win_spin")
@@ -474,3 +480,26 @@ func _drain(game, max_steps: int = 200) -> bool:
 
 func _json_equivalent(left: Variant, right: Variant) -> bool:
 	return JSON.stringify(JSON.parse_string(JSON.stringify(left))) == JSON.stringify(JSON.parse_string(JSON.stringify(right)))
+
+func _test_retro_bonuses() -> void:
+	groups.append("independent cellar, property and phase-lock decisions")
+	var barrel = _new_game()
+	barrel._launch_bonus("mystery_barrel")
+	barrel.feature.barrels = [40,0,80]
+	_check(barrel.act("choice_0") and int(barrel.feature.pot)==60,"Barrel adds its saved hidden award")
+	_check(not barrel.act("choice_0"),"Opened barrel cannot be picked twice")
+	var resumed = _new_game()
+	_check(resumed.restore(JSON.parse_string(JSON.stringify(barrel.snapshot()))),"Cellar hidden order restores")
+	resumed.act("choice_1")
+	_check(int(resumed.feature.pot)==60 and resumed.state=="AWARD_COLLECTION","Empty barrel retains accumulated pot and ends")
+	var phase = _new_game("time_shift")
+	phase._launch_bonus("paradox_mystery")
+	for i in 3: _check(phase.act("choice_0"),"Stable phase accepts one lock")
+	_check(phase.state=="AWARD_COLLECTION" and int(phase.feature.pot)==30,"Three stable phase locks pay exactly thirty")
+	_check(not phase.act("choice_0"),"Fourth phase lock rejected")
+	var estate = _new_game("empire_estates")
+	estate._launch_bonus("property_pick")
+	estate.act("choice_2")
+	_check(int(estate.feature.pot)==80 and estate.state=="FEATURE_ACTIVE","Property requires a separate development decision")
+	estate.act("choice_2")
+	_check(int(estate.feature.pot)==40 and estate.building_icons==3,"Building floor trades half rent for two construction icons")

@@ -119,5 +119,7 @@ for idx,c in enumerate(configs):
  if idx==2:
   # Time Shift has a different distribution of clock and seven overprints.
   c['strips'][0][9]='seven'; c['strips'][1][20]='special'; c['strips'][2][2]='bell'
+ c['rules'] = [r.replace('Mystery Barrel and Mystery Bonus choose','Mystery Bonus chooses') for r in c['rules'] if not r.startswith(('Darts Dash:', 'Mystery Barrel:', 'Property Pick:', 'Paradox Mystery'))]
+ c['rules'].extend({'time_shift': ['Paradox Mystery: complete up to three phase locks. Stable always adds 10; Surge adds 50 at 2/3; Rift adds 120 at 1/3. A failed lock ends the sequence while keeping the accumulated pot.'], 'empire_estates': ['Property Pick: choose rents 40/60/80, unlocking that property and one icon. Then BANK RENT, DOUBLE RENT (1/2 doubles, otherwise keeps base), or BUILD FLOOR (half rent and two additional icons).'], 'last_orders': ['Darts Dash: three separate STOP throws, each using the 12 lamps at 100ms. Lamps 6/7 pay 120, 5/8 pay 60, others 20. All three scores accumulate. Reduced motion holds lamp 1.', 'Mystery Barrel: start at 20. Three shuffled barrels contain +40, +80 and empty. Choose up to two distinct barrels or COLLECT early. Empty ends the raid while keeping the pot. Hidden order is saved on entry.']}[c['id']])
  (ROOT/'data/machines'/f"{c['id']}.json").write_text(json.dumps(c,indent=2)+'\n')
  print(c['id'],len(c['trail']),[len(x) for x in c['strips']])

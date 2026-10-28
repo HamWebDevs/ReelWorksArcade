@@ -132,6 +132,10 @@ func available_actions() -> Array:
 						actions.append("continue")
 			elif id in SKILL_IDS:
 				actions.append("stop")
+			elif id == "mystery_barrel" and feature.has("barrels"):
+				actions.append("collect")
+				for i in 3:
+					if not i in feature.get("opened",[]): actions.append("choice_%d" % i)
 			elif id in PICK_IDS or id == "time_jump":
 				actions.append_array(["choice_0", "choice_1", "choice_2"])
 			elif id == "auction_offer":
@@ -463,6 +467,26 @@ func _launch_bonus(id: String, initial: int = 0) -> void:
 		feature.prompt = "Choose an era. Jump to its first square and launch its feature."
 	else:
 		feature.prompt = "CONTINUE to reveal the feature result."
+	if id == "property_pick":
+		feature.prompt = "Choose a property: Copper Mill rents for 40, Lantern Yard 60, Glasshouse 80. Then choose rent, a double chance or construction. Each unlocks its building."
+	elif id == "darts_dash":
+		feature["darts_left"] = 3
+		feature.prompt = "THREE DARTS! STOP each throw: lamps 6/7 = 120, 5/8 = 60, others = 20. All three scores count."
+	elif id == "mystery_barrel":
+		var barrels: Array = [40,80,0]
+		for i in range(2,0,-1):
+			var j: int = rng.range_int(0,i)
+			var swap: int = barrels[i]
+			barrels[i] = barrels[j]
+			barrels[j] = swap
+		feature["barrels"] = barrels
+		feature["opened"] = []
+		feature.pot = 20
+		feature.prompt = "CELLAR RAID: two barrels hold +40/+80; one is empty. Pick another or COLLECT. Empty ends the raid, keeping your pot."
+	elif id == "paradox_mystery":
+		feature["locks_left"] = 3
+		feature.choices = ["STABLE +10", "SURGE +50", "RIFT +120"]
+		feature.prompt = "THREE PHASE LOCKS. Stable always pays 10; Surge pays 50 at 2/3; Rift pays 120 at 1/3. Failure ends, keeping your pot."
 	message = str(feature.title) + " · " + str(feature.prompt)
 
 func _finish_bonus(amount: int, note: String) -> void:
@@ -513,6 +537,15 @@ func _gamble(high: bool) -> void:
 func _skill_stop(cursor: int) -> void:
 	var award: int = 120 if cursor in [5, 6] else (60 if cursor in [4, 7] else 20)
 	var id: String = str(feature.id)
+	if id == "darts_dash" and feature.has("darts_left"):
+		feature.pot = int(feature.pot) + award
+		feature.darts_left = int(feature.darts_left) - 1
+		feature.stage = int(feature.stage) + 1
+		if int(feature.darts_left) == 0:
+			_finish_bonus(int(feature.pot), "Three darts complete! Total %d." % int(feature.pot))
+		else:
+			feature.prompt = "DART %d scored %d. %d throws left. Lamps 6/7 = 120, 5/8 = 60, others = 20." % [int(feature.stage),award,int(feature.darts_left)]
+		return
 	if id == "feature_shot":
 		if cursor in [5, 6]:
 			_launch_bonus("streak_feature")
@@ -537,11 +570,37 @@ func _choice(index: int) -> void:
 			board_context.zone = ["Past", "Present", "Future"][index]
 		_launch_bonus(["rewind", "temporal_hi_lo", "temporal_surge"][index])
 	elif id == "property_pick":
-		var roll: int = rng.range_int(0, 2)
-		var amount: int = [40, 80, 120][roll]
-		building_icons += 1
-		unlocked_buildings[index] = true
-		_finish_bonus(amount, "Property secured. +%d and one construction icon." % amount)
+		if int(feature.stage) == 0:
+			building_icons += 1
+			unlocked_buildings[index] = true
+			feature.stage = 1
+			feature.pot = 40 + index*20
+			feature.choices = ["BANK RENT", "DOUBLE RENT", "BUILD FLOOR"]
+			feature.prompt = "Property secured: %d rent. BANK keeps it; DOUBLE has 1/2 chance of twice rent (otherwise base rent); BUILD gives half rent and 2 icons." % int(feature.pot)
+		else:
+			var amount: int = int(feature.pot)
+			if index == 1 and rng.chance(1,2): amount *= 2
+			if index == 2:
+				amount = int(amount/2)
+				building_icons += 2
+			_finish_bonus(amount,"Property deal completed: %d rent credits." % amount)
+	elif id == "mystery_barrel" and feature.has("barrels"):
+		feature.opened.append(index)
+		var amount: int = int(feature.barrels[index])
+		feature.pot = int(feature.pot) + amount
+		if amount == 0 or feature.opened.size() >= 2:
+			_finish_bonus(int(feature.pot), "Cellar raid complete: %d credits kept." % int(feature.pot))
+		else:
+			feature.prompt = "+%d in the barrel! COLLECT %d or risk the remaining barrels. One is empty." % [amount,int(feature.pot)]
+	elif id == "paradox_mystery" and feature.has("locks_left"):
+		var success: bool = index == 0 or rng.chance(2 if index == 1 else 1,3)
+		feature.locks_left = int(feature.locks_left) - 1
+		feature.stage = int(feature.stage) + 1
+		if success: feature.pot = int(feature.pot) + [10,50,120][index]
+		if not success or int(feature.locks_left) == 0:
+			_finish_bonus(int(feature.pot), "Phase sequence ended. All %d credits kept." % int(feature.pot))
+		else:
+			feature.prompt = "LOCK %d secured! %d locks remain. Stable: 10 guaranteed; Surge: 50 at 2/3; Rift: 120 at 1/3." % [int(feature.stage),int(feature.locks_left)]
 	elif id == "paradox_mystery":
 		var roll: int = rng.range_int(0, 3)
 		if roll == 0:

@@ -2,7 +2,9 @@
 
 An original, playable, offline Godot collection inspired by the hardware and play vocabulary of British pub fruit machines. **18+ simulated gambling; unlimited fictional credits only.** No payments, advertisements, accounts, network service, purchasable credits, transferable balance or redeemable prizes.
 
-This repository contains three working cabinets: **Last Orders**, **Empire Estates** and **Time Shift**. It is a substantial playable development build, version 0.1.0, with original vector glass, mechanical reel animation, native touch controls and synthesized audio. It is not a finished commercial release. Read [the development report](docs/DEVELOPMENT_REPORT.md) for verified results and remaining polish/balancing work.
+Version 0.2 adds a brighter cabinet fascia and independent three-dart, barrel-raid, property-development and phase-lock decisions.
+
+This repository contains three working cabinets: **Last Orders**, **Empire Estates** and **Time Shift**. It is a substantial playable development build, version 0.2.0, with original vector glass, mechanical reel animation, native touch controls and synthesized audio. It is not a finished commercial release. Read [the development report](docs/DEVELOPMENT_REPORT.md) for verified results and remaining polish/balancing work.
 
 ## Download the Android APK
 

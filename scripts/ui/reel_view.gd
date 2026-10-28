@@ -99,12 +99,12 @@ func _draw() -> void:
 		if held[i]:
 			draw_style_box(_box(Color(1, 0.8, 0.2, 0.08), Color("ffe28c"), 4, 10), Rect2(x + 2, 2, width - 4, size.y - 4))
 	var line_y := size.y / 2.0
-	draw_line(Vector2(0, line_y - 36), Vector2(size.x, line_y - 36), Color(0.65, 0.12, 0.08, 0.55), 2)
-	draw_line(Vector2(0, line_y + 36), Vector2(size.x, line_y + 36), Color(0.65, 0.12, 0.08, 0.55), 2)
+	draw_line(Vector2(0, line_y - (size.y-16)/6.0), Vector2(size.x, line_y - (size.y-16)/6.0), Color(0.65, 0.12, 0.08, 0.55), 2)
+	draw_line(Vector2(0, line_y + (size.y-16)/6.0), Vector2(size.x, line_y + (size.y-16)/6.0), Color(0.65, 0.12, 0.08, 0.55), 2)
 	draw_colored_polygon(PackedVector2Array([Vector2(0, line_y-12),Vector2(16,line_y),Vector2(0,line_y+12)]), Color("c64230"))
 	draw_colored_polygon(PackedVector2Array([Vector2(size.x, line_y-12),Vector2(size.x-16,line_y),Vector2(size.x,line_y+12)]), Color("c64230"))
 	if win:
-		draw_style_box(_box(Color(1, 0.8, 0.1, 0.04), Color("ffd56a"), 4, 8), Rect2(0, line_y - 38, size.x, 76))
+		draw_style_box(_box(Color(1, 0.8, 0.1, 0.04), Color("ffd56a"), 4, 8), Rect2(0, line_y - (size.y-16)/6.0-2, size.x, (size.y-16)/3.0+4))
 
 func _box(bg: Color, border: Color, thickness: int, radius: int) -> StyleBoxFlat:
 	var style := StyleBoxFlat.new()

@@ -216,67 +216,53 @@ func _build_cabinet() -> void:
 	_clear_screen()
 	var machine := engine.config
 	var accent := Color(machine.colors.accent)
-	_panel(screen,Rect2(12,12,696,1416),Color("090e10"),Color("71716a"),3,28)
-	_panel(screen,Rect2(22,22,676,1396),Color(machine.colors.bg),accent.darkened(0.4),2,22)
 	var trim := CabinetTrim.new()
 	trim.size = DESIGN
 	trim.accent = accent
-	trim.primary = Color(machine.colors.primary)
+	trim.primary = Color("bd191f") if current_id=="last_orders" else (Color("147758") if current_id=="empire_estates" else Color("5927ae"))
 	trim.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	screen.add_child(trim)
-	_panel(screen,Rect2(34,27,652,44),Color("101b1b"),Color("45524b"),1,12)
-	_button(screen,"‹ ARCADE",Rect2(42,28,141,43),_back,Color("233a35"))
-	_button(screen,"RULES",Rect2(482,28,91,43),_show_rules,Color("233a35"))
-	_button(screen,"⚙",Rect2(584,28,90,43),_show_settings,Color("233a35"))
-	_label(screen,"REELWORKS  /  ORIGINAL SERIES",Rect2(185,38,291,26),12,Color("c6cbbd"),true)
-	var marquee := _label(screen,str(machine.name).to_upper(),Rect2(40,86,640,58),44,Color("fff1a0"),true,true)
-	marquee.add_theme_color_override("font_shadow_color",Color("5d0f08"))
-	marquee.add_theme_constant_override("shadow_offset_x",4)
-	marquee.add_theme_constant_override("shadow_offset_y",5)
-	marquee.add_theme_color_override("font_outline_color",Color("431c16"))
-	marquee.add_theme_constant_override("outline_size",9)
-	_label(screen,str(machine.get("subtitle", "THE ORIGINAL PUB FRUIT MACHINE")).to_upper(),Rect2(42,145,636,26),14,Color("e4d6b9"),true)
+	_button(screen,"‹ ARCADE",Rect2(22,22,155,48),_back,Color("20282b"))
+	_label(screen,"REELWORKS · 18+ FREE PLAY",Rect2(183,30,300,31),16,Color("bfc2b8"),true)
+	_button(screen,"RULES",Rect2(492,22,100,48),_show_rules,Color("20282b"))
+	_button(screen,"SETUP",Rect2(602,22,96,48),_show_settings,Color("20282b"))
+	var marquee := _label(screen,str(machine.name).to_upper(),Rect2(85,108,550,48),37,Color("fff28a"),true,true)
+	marquee.add_theme_color_override("font_shadow_color",Color("340b08"))
+	marquee.add_theme_constant_override("shadow_offset_x",3)
+	marquee.add_theme_constant_override("shadow_offset_y",4)
+	marquee.add_theme_color_override("font_outline_color",Color("4a100e"))
+	marquee.add_theme_constant_override("outline_size",7)
 	glass = GLASS_SCENE.instantiate() as FeatureGlass
-	glass.position = Vector2(34,181)
-	glass.size = Vector2(652,469)
+	glass.position = Vector2(80,171)
+	glass.size = Vector2(560,600)
 	glass.font = bold_font
 	glass.number_font = body_font
 	glass.setup(machine)
 	screen.add_child(glass)
-	_button(screen,"⤢  ENLARGE BOARD",Rect2(226,654,268,37),_show_zoom,Color("263b32"),accent)
 	credits_display = CreditDisplay.new()
-	credits_display.position = Vector2(43,701)
-	credits_display.size = Vector2(215,72)
+	credits_display.position = Vector2(85,785)
+	credits_display.size = Vector2(177,68)
 	credits_display.font = bold_font
+	credits_display.caption = "PLAY CREDITS"
+	credits_display.ink = Color("ff4d32")
 	screen.add_child(credits_display)
 	bank_display = CreditDisplay.new()
-	bank_display.position = Vector2(270,701)
-	bank_display.size = Vector2(215,72)
-	bank_display.caption = "PRIZE BANK · CREDITS"
+	bank_display.position = Vector2(275,785)
+	bank_display.size = Vector2(177,68)
+	bank_display.caption = "WINNINGS · CREDITS"
 	bank_display.font = bold_font
-	bank_display.ink = Color("c5f1a7")
+	bank_display.ink = Color("ff4d32")
 	screen.add_child(bank_display)
-	_panel(screen,Rect2(497,701,179,72),Color("25372d"),accent,1,6)
-	_label(screen,"TOP PRIZE",Rect2(504,709,164,22),13,Color("e7d4a8"),true)
-	_label(screen,"%d CR" % int(machine.jackpot),Rect2(504,732,164,33),28,accent,true,true)
-	paytable_panel = Control.new()
-	paytable_panel.position = Vector2(40,781)
-	paytable_panel.size = Vector2(640,34)
-	screen.add_child(paytable_panel)
-	_label(paytable_panel,"3×",Rect2(0,0,54,32),22,accent,true)
-	var ids := ["cherry","lemon","bell","bar","seven","special"]
-	for i in ids.size():
-		var symbol := TextureRect.new()
-		var path: String = "res://assets/symbols/"+(str(machine.id)+"_special" if ids[i]=="special" else ids[i])+".svg"
-		if ResourceLoader.exists(path): symbol.texture = load(path)
-		symbol.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		symbol.position = Vector2(55+i*97,1)
-		symbol.size = Vector2(30,30)
-		paytable_panel.add_child(symbol)
-		_label(paytable_panel,str(int(machine.paytable.get(ids[i],0))),Rect2(89+i*97,0,58,32),17,Color("f0dba6"))
+	_button(screen,"ENLARGE\nGLASS",Rect2(468,784,166,66),_show_zoom,Color("165267"),Color("dbe3c0"))
+	_panel(screen,Rect2(70,856,580,34),Color("061619"),Color("b0ad86"),2,1)
+	status_label = _label(screen,"",Rect2(80,855,560,37),16,Color("68ebed"),true)
+	status_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	# Sloped lower glass: compact real reels flanked by printed awards.
+	_label(screen,"HOLD\nWHEN\nLIT",Rect2(48,921,68,66),17,Color("fff0a4"),true)
+	_label(screen,"10 CR\nPLAY",Rect2(48,1007,68,47),16,Color("fff0a4"),true)
 	reels = REEL_SCENE.instantiate() as ReelView
-	reels.position = Vector2(43,820)
-	reels.size = Vector2(633,224)
+	reels.position = Vector2(123,902)
+	reels.size = Vector2(354,159)
 	reels.clip_contents = true
 	reels.font = bold_font
 	reels.reduced_motion = preferences.reduced_motion
@@ -284,27 +270,43 @@ func _build_cabinet() -> void:
 	reels.settled.connect(_spin_finished)
 	reels.reel_stopped.connect(func(_index: int) -> void: sounds.play_event("stop"))
 	screen.add_child(reels)
+	paytable_panel = Control.new()
+	paytable_panel.position = Vector2(490,898)
+	paytable_panel.size = Vector2(163,171)
+	screen.add_child(paytable_panel)
+	_panel(paytable_panel,Rect2(0,0,163,171),Color("111e29"),Color("e0ce90"),2,2)
+	_label(paytable_panel,"3 MATCH · PRIZE",Rect2(4,2,155,20),13,Color("ffe2a0"),true)
+	var ids := ["special","seven","bar","bell","lemon","cherry"]
+	for i in ids.size():
+		var symbol := TextureRect.new()
+		var path: String = "res://assets/symbols/"+(str(machine.id)+"_special" if ids[i]=="special" else ids[i])+".svg"
+		if ResourceLoader.exists(path): symbol.texture = load(path)
+		symbol.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		symbol.position = Vector2(12,24+i*23)
+		symbol.size = Vector2(26,23)
+		paytable_panel.add_child(symbol)
+		_label(paytable_panel,str(int(machine.paytable.get(ids[i],0)))+" CR",Rect2(47,24+i*23,106,23),18,Color("ffda57"),true,true)
 	for i in 3:
-		buttons["hold_"+str(i)] = _button(screen,"HOLD "+str(i+1),Rect2(44+i*214,1054,204,53),_act.bind("hold_"+str(i)),Color("8c452b"),Color("f7d18a"))
-	status_label = _label(screen,"",Rect2(49,1118,624,53),19,Color("fee4a7"),true)
-	status_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	buttons.start = _button(screen,"START  ·  %d CR" % int(machine.stake),Rect2(446,1180,228,76),_act.bind("start"),Color("c0a54b"),Color("fff1bb"))
-	buttons.collect = _button(screen,"COLLECT",Rect2(44,1180,190,76),_act.bind("collect"),Color("346b4b"),Color("c8edb0"))
-	buttons.cancel = _button(screen,"CANCEL",Rect2(246,1180,188,76),_act.bind("cancel"),Color("73302a"),Color("efbf91"))
-	buttons.exchange = _button(screen,"EXCHANGE",Rect2(44,1269,190,54),_act.bind("exchange"),Color("314b69"))
-	buttons.feature_start = _button(screen,"FEATURE START",Rect2(246,1269,428,54),_act.bind("feature_start"),Color("8b6633"))
-	buttons.refill = _button(screen,"+ FREE CREDITS",Rect2(44,1341,206,43),_act.bind("refill"),Color("223b32"))
-	buttons.transfer = _button(screen,"BANK → PLAY",Rect2(264,1341,198,43),_act.bind("transfer"),Color("223b32"))
-	_button(screen,"STATS",Rect2(476,1341,198,43),_show_stats,Color("223b32"))
-	_label(screen,"18+  ·  FREE-PLAY SIMULATION  ·  NO REAL MONEY",Rect2(38,1390,644,25),12,Color("bcbca7"),true)
+		buttons["hold_"+str(i)] = _button(screen,"HOLD\n"+str(i+1),Rect2(123+i*120,1070,113,62),_act.bind("hold_"+str(i)),Color("aa221d"),Color("eee6be"))
+	_button(screen,"REEL\nVIEW",Rect2(493,1070,157,62),_show_reel_zoom,Color("1c5172"))
+	buttons.collect = _button(screen,"COLLECT",Rect2(30,1148,108,64),_act.bind("collect"),Color("a32b22"),Color("e7e1be"))
+	buttons.cancel = _button(screen,"CANCEL",Rect2(146,1148,108,64),_act.bind("cancel"),Color("233e9a"),Color("e7e1be"))
+	buttons.exchange = _button(screen,"EXCHANGE",Rect2(262,1148,108,64),_act.bind("exchange"),Color("1b754c"),Color("e7e1be"))
+	buttons.feature_start = _button(screen,"FEATURE",Rect2(378,1148,128,64),_act.bind("feature_start"),Color("233e9a"),Color("e7e1be"))
+	buttons.start = _button(screen,"START",Rect2(514,1148,176,64),_act.bind("start"),Color("c32b20"),Color("fff0a3"))
+	buttons.refill = _button(screen,"+ FREE CREDITS",Rect2(80,1348,188,48),_act.bind("refill"),Color("502221"))
+	buttons.transfer = _button(screen,"BANK → PLAY",Rect2(277,1348,188,48),_act.bind("transfer"),Color("502221"))
+	_button(screen,"STATS",Rect2(474,1348,165,48),_show_stats,Color("502221"))
+	_label(screen,"SIMULATED MACHINE · NO CASH VALUE · NO PAYMENTS",Rect2(52,1409,616,24),12,Color("aaa9a0"),true)
 	_build_feature_panel()
 
 func _build_feature_panel() -> void:
 	feature_panel = Control.new()
-	feature_panel.position = Vector2(49,790)
+	feature_panel.position = Vector2(49,350)
+	feature_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	feature_panel.size = Vector2(622,375)
 	screen.add_child(feature_panel)
-	_panel(feature_panel,Rect2(0,0,622,375),Color("111f20"),Color("e9bd6c"),3,16)
+	_panel(feature_panel,Rect2(0,0,622,375),Color("291414"),Color("e9bd6c"),3,3)
 	feature_title = _label(feature_panel,"",Rect2(19,15,584,39),26,Color("f6d695"),true,true)
 	feature_prompt = _label(feature_panel,"",Rect2(22,65,578,85),18,Color("e2e5d7"),true)
 	feature_prompt.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -328,8 +330,8 @@ func _build_feature_panel() -> void:
 	for i in actions.size():
 		buttons[actions[i]] = _button(feature_panel,titles[i],Rect2(19+i*118,301,112,52),_act.bind(actions[i]),Color("70523c"))
 	for i in 3:
-		buttons["nudge_up_"+str(i)] = _button(screen,"↑ NUDGE "+str(i+1),Rect2(44+i*214,1054,204,53),_act.bind("nudge_up_"+str(i)),Color("4a5b86"))
-		buttons["nudge_down_"+str(i)] = _button(screen,"↓ NUDGE "+str(i+1),Rect2(44+i*214,1114,204,53),_act.bind("nudge_down_"+str(i)),Color("4a5b86"))
+		buttons["nudge_up_"+str(i)] = _button(screen,"NUDGE ↑\n"+str(i+1),Rect2(123+i*120,1070,113,62),_act.bind("nudge_up_"+str(i)),Color("4a5b86"))
+		buttons["nudge_down_"+str(i)] = _button(screen,"NUDGE ↓\n"+str(i+1),Rect2(123+i*120,1257,113,62),_act.bind("nudge_down_"+str(i)),Color("4a5b86"))
 
 func _act(action: String) -> void:
 	if engine == null or on_arcade or (is_instance_valid(reels) and reels.spinning):
@@ -377,21 +379,27 @@ func _sync() -> void:
 	credits_display.value = engine.credits
 	bank_display.value = engine.bank
 	status_label.text = engine.message if save_ok else "Storage unavailable — progress cannot be saved."
-	status_label.visible = not actions.has("nudge_down_0")
+	status_label.visible = true
 	reels.held = engine.held
 	reels.win = engine.state == "AWARD_COLLECTION"
 	reels.queue_redraw()
 	glass.chasing = reels.spinning
-	glass.update_state(engine.trail_pos,engine.trail_progress,engine.state.begins_with("FEATURE"),engine.feature)
+	glass.update_state(engine.trail_pos,engine.trail_progress,engine.state.begins_with("FEATURE") or engine.state=="GAMBLE",engine.feature)
 	glass.reduced_flashing = preferences.reduced_flashing
 	var f: Dictionary = engine.feature
 	var needs_panel := engine.state in ["FEATURE_ACTIVE","GAMBLE","FEATURE_ENTRY"] and not f.is_empty()
 	feature_panel.visible = needs_panel
-	feature_panel.position = Vector2(49,257) if str(f.get("id","")) in ["super_hold","super_nudges","super_shift"] else Vector2(49,790)
+	var board_controls: bool = str(f.get("id","")) == "board" and engine.state == "FEATURE_ACTIVE"
+	feature_panel.position = Vector2(49,650) if board_controls else Vector2(49,350)
+	feature_panel.get_child(0).visible = not board_controls
+	feature_title.visible = not board_controls
+	feature_prompt.visible = not board_controls
+	feature_pot.visible = not board_controls
+	bonus_face.visible = not board_controls
 	if buttons.rewind.get_parent() != screen:
 		buttons.rewind.reparent(screen)
-	buttons.rewind.position = Vector2(246,1269)
-	buttons.rewind.size = Vector2(428,54)
+	buttons.rewind.position = Vector2(378,1148)
+	buttons.rewind.size = Vector2(128,64)
 	buttons.feature_start.visible = not actions.has("rewind")
 	var covers_reels: bool = needs_panel and feature_panel.position.y > 700
 	reels.visible = not covers_reels
@@ -418,10 +426,11 @@ func _sync() -> void:
 			if actions.has(action): visible_actions.append(action)
 		for i in visible_actions.size():
 			var b: Button = buttons[visible_actions[i]]
-			b.position = Vector2(20 + i*584.0/visible_actions.size(),301)
+			b.position = Vector2(20 + i*584.0/visible_actions.size(),64 if board_controls else 301)
 			b.size = Vector2(574.0/visible_actions.size(),52)
 		var choices: Array = f.get("choices",[])
 		for i in 3:
+			choice_buttons[i].position.y = 0 if board_controls else 231
 			choice_buttons[i].text = str(choices[i]) if i<choices.size() else "PICK "+str(i+1)
 			choice_buttons[i].add_theme_font_size_override("font_size",16)
 		if last_feature_id != str(f.get("id","")):
@@ -452,19 +461,22 @@ func _show_stats() -> void:
 	_show_text(str(engine.config.name).to_upper()+" / STATISTICS",body)
 
 func _show_zoom() -> void:
-	_new_overlay("FEATURE GLASS / CLOSE INSPECTION")
+	_new_overlay("FEATURE GLASS · DRAG TO INSPECT")
+	var scroll := ScrollContainer.new()
+	scroll.position = Vector2(32,225)
+	scroll.size = Vector2(656,1040)
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_SHOW_ALWAYS
+	scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_SHOW_ALWAYS
+	overlay.add_child(scroll)
 	var enlarged := GLASS_SCENE.instantiate() as FeatureGlass
-	enlarged.position = Vector2(32,231)
-	enlarged.size = Vector2(656,810)
+	enlarged.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	enlarged.custom_minimum_size = Vector2(1360,1520)
+	enlarged.size = enlarged.custom_minimum_size
 	enlarged.font = bold_font
 	enlarged.number_font = body_font
 	enlarged.setup(engine.config)
 	enlarged.update_state(engine.trail_pos,engine.trail_progress,false,engine.feature)
-	overlay.add_child(enlarged)
-	_label(overlay,str(engine.config.trail_name).to_upper(),Rect2(44,1082,632,38),25,Color("f0d191"),true,true)
-	_label(overlay,"Current position %d  ·  Trail progress %d" % [engine.trail_pos+1,engine.trail_progress],Rect2(44,1140,632,36),21,Color("d8e0cf"),true)
-	var zoom_reels := _button(overlay,"INSPECT REELS",Rect2(146,1201,428,64),_show_reel_zoom,Color("36574b"))
-	zoom_reels.tooltip_text = "Enlarge the three visible reel positions."
+	scroll.add_child(enlarged)
 
 func _show_reel_zoom() -> void:
 	_new_overlay("REEL GLASS / CENTER WINLINE")
